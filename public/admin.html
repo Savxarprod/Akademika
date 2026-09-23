@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/jpg" href="img/logo.png">
+  <title>Akademika — админ-панель</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="aurora aurora-one"></div>
+  <div class="aurora aurora-two"></div>
+
+  <header class="site-header">
+  <button class="logo logo-toggle" type="button" aria-label="Меню">
+    <span class="logo-mark">A</span>
+    <span>Akademika</span>
+  </button>
+
+  <nav class="nav-mobile" id="mobileNav">
+      <a href="index.html">Главная</a>
+      <a href="services.html">Услуги</a>
+      <a href="about.html">О нас</a>
+      <a href="portfolio.html">Портфолио</a>
+    </nav>
+
+  <a href="index.html#request" class="header-button">Оставить заявку</a>
+</header>
+
+  <main class="admin-wrap">
+    <div class="section-heading" style="display:flex; justify-content:space-between; align-items:center; gap:16px;">
+      <div>
+        <span>Admin</span>
+        <h2>Заявки клиентов</h2>
+      </div>
+      <button onclick="logout()" class="delete-btn">Выйти</button>
+    </div>
+
+<script>
+  async function logout() {
+    await fetch('/api/auth/logout', { method: 'POST' });
+    window.location.href = '/admin-login.html';
+  }
+</script>
+
+
+    <p id="adminStatus" style="color: #b9bfd8;">Загружаем заявки...</p>
+
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Тип работы</th>
+            <th>Срок</th>
+            <th>Тема</th>
+            <th>Страницы</th>
+            <th>Оригинальность</th>
+            <th>Контакт</th>
+            <th>Дата заявки</th>
+            <th>Действие</th>
+          </tr>
+        </thead>
+
+        <tbody id="requestsTable"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
